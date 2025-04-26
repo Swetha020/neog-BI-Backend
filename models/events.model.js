@@ -15,6 +15,13 @@ const eventSchema = new mongoose.Schema({
     eventTags: {type:[String],required:true},
     isOnlineEvent: {type:Boolean, required:true},
     imgUrl: {type:String},
+    speakers: [
+        {
+            name: { type: String, required: true },
+            designation: { type: String, required: true },
+            picture: { type: String } 
+        }
+    ]
 })
 
 const Event = mongoose.model("Event",eventSchema)

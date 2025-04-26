@@ -59,6 +59,27 @@ app.get("/events", async (req,res)=>{
    }
 })
 
+const getEventById = async(eventId) =>{
+    try {
+        const event = await Event.findOne({_id:eventId})
+        return event
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+app.get("/events/:eventId",async(req,res)=>{
+    try {
+        const event = await getEventById(req.params.eventId)
+        if(event){
+            res.status(200).json(event)
+        }else{
+            res.status(404).json("Event not found")
+        }
+    } catch (error) {
+        res.status(500).json("Unable to fetch data")
+    }
+})
 
 
 const PORT = 3000
